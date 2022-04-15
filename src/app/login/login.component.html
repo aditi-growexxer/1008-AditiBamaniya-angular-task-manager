@@ -1,0 +1,71 @@
+<div class="container">
+  <form #loginForm="ngForm" (ngSubmit)="auth.login(loginForm.value.email,loginForm.value.password)">
+    <h2 class="m-5 text-center">Login User</h2>
+
+    <div class="form-group row m-5">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          placeholder="Email"
+          required
+          #emailid="ngModel"
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          [class.is-invalid]="emailid.invalid && emailid.touched"
+          [(ngModel)]="email"
+        />
+        <!-- <small
+                class="text-danger"
+                [class.d-none]="emailid.valid || emailid.untouched"
+                >Email is required & must match with pattern</small
+              > -->
+        <div *ngIf="emailid.errors && (emailid.touched || loginForm.submitted)">
+          <small class="text-danger" *ngIf="emailid.errors?.['required']"
+            >Email is required</small
+          >
+          <small class="text-danger" *ngIf="emailid.errors?.['pattern']"
+            >Email should match with pattern</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row m-5">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="Password"
+          required
+          #password1="ngModel"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+          [class.is-invalid]="password1.invalid && password1.touched"
+          [(ngModel)]="password"
+        />
+        <div
+          *ngIf="password1.errors && (password1.touched || loginForm.submitted)"
+        >
+          <small class="text-danger" *ngIf="password1.errors?.['required']"
+            >Password is required</small
+          >
+          <small class="text-danger" *ngIf="password1.errors?.['pattern']"
+            >Password require 8 characters, 1 Uppercase and 1 Specialcase</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="loginForm.form.invalid"
+      class="btn btn-primary m-5"
+    >
+      Login
+    </button>
+    <a [routerLink]="['/register']" class="btn btn-primary m-5">Register User</a>
+  </form>
+</div>
