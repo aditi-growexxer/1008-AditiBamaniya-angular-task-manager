@@ -1,1 +1,3 @@
+<app-header *ngIf="auth.userInfo?.token ? true : false"></app-header>
 <router-outlet></router-outlet>
+<app-footer *ngIf="auth.userInfo?.token ? true : false"></app-footer>

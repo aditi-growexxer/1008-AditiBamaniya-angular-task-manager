@@ -1,0 +1,33 @@
+<ng-container *ngIf="userDetails">
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-7">
+        <div class="card p-3 py-4">
+          <div class="text-center mt-3">
+            <h4 class="mt-2 mb-0">User Name : <span class="text-secondary">{{ userDetails.name }}</span></h4>
+            <div class="px-4 mt-3">
+              <h4>Age : <span class="text-secondary">{{ userDetails.age }}</span></h4>
+            </div>
+            <div class="buttons mt-4">
+              <button class="btn btn-outline-primary px-4" [routerLink]="['/update-profile']">Update</button>
+              <button class="btn btn-outline-danger px-4 ms-5" (click)="openModal(template)">Remove <fa-icon [icon]="faTrash"></fa-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>
+      Do you want to Delete Current Logged in User?
+    </p>
+    <button type="button" class="btn btn-default" (click)="confirm()">
+      Yes
+    </button>
+    <button type="button" class="btn btn-primary" (click)="decline()">
+      No
+    </button>
+  </div>
+</ng-template>

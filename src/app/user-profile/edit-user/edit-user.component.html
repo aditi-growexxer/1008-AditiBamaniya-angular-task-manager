@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="container py-5">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div
+          class="card shadow-2-strong card-registration"
+          style="border-radius: 15px"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0"></h3>
+            <form [formGroup]="updateUserProfileForm" (ngSubmit)="updateUserDetails()">
+              <div class="row">
+                <div class="mb-4 pb-2">
+                  <label for="name" class="col-form-label">Name</label>
+                  <div class="col-sm-12">
+                    <input
+                      type="text"
+                      formControlName="name"
+                      class="form-control"
+                      placeholder="Enter Your Name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-4 pb-2">
+                    <label for="Age" class="col-form-label">Age</label>
+                    <div class="col-sm-12">
+                      <input
+                        type="number"
+                        name="Age"
+                        formControlName="age"
+                        placeholder="Enter your Age (18-99)"
+                        class="form-control"
+                        min="18"
+                        max="99"
+                      />
+                    </div>
+                  </div>
+              </div>
+              <div class="mt-2">
+                <input
+                  type="submit"
+                  class="btn btn-primary mt-5"
+                  value="Update"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="container" *ngIf="datasource">
+  <button
+    type="button"
+    routerLink="/create-task"
+    class="btn btn-secondary mt-5 alignRight"
+  >
+    <fa-icon [icon]="faPlus"></fa-icon> Create Task
+  </button>
+  <mat-table #matSort class="table mt-1" [dataSource]="datasource.data" matSort>
+    <ng-container matColumnDef="Index">
+      <mat-header-cell *matHeaderCellDef> Index. </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index">
+        {{ i + 1 }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Description
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="completed">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.completed ? "Completed" : "Pending" }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Created Date
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.createdAt | date }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Mark">
+      <mat-header-cell *matHeaderCellDef> Mark </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <fa-icon
+          *ngIf="element.completed; else notMark"
+          [icon]="faCircleCheck"
+        ></fa-icon>
+        <ng-template #notMark>
+          <fa-icon [icon]="faCircleExclamation"></fa-icon>
+        </ng-template>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Update">
+      <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <Button (click)="updateRecord(element._id)"
+          ><fa-icon [icon]="faFilePen"></fa-icon
+        ></Button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <Button (click)="openModal(template, element)"
+          ><fa-icon [icon]="faTrash"></fa-icon
+        ></Button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columns"></mat-row>
+  </mat-table>
+</div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>
+      Do you want to Delete Record for task id <b>{{ task._id }}</b> ?
+    </p>
+    <button type="button" class="btn btn-default" (click)="confirm()">
+      Yes
+    </button>
+    <button type="button" class="btn btn-primary" (click)="decline()">
+      No
+    </button>
+  </div>
+</ng-template>

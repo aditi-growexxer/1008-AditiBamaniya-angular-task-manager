@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="registrationForm" (onSubmit)="onRegister()">
+  <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
     <h2 class="m-5 text-center">Register User</h2>
     <div class="form-group row m-5">
       <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -119,13 +119,13 @@
         </div>
       </div>
     </div>
-    <button
+    <input
       type="submit"
       class="btn btn-primary m-5"
       [disabled]="!registrationForm.valid"
-    >
-      Register
-    </button>
+      value="Register"
+    />
+    <a [routerLink]="['/login']" class="btn btn-primary m-5">Login User</a>
     <!-- <button type="submit" class="btn btn-secondary m-5">
       Load Data
     </button> -->

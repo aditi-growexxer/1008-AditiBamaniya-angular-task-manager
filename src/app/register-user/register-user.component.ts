@@ -36,8 +36,6 @@ export class RegisterUserComponent{
   },{validators: PasswordMatching()});
 
   onRegister(){
-    // this.auth.setRegisterData(this.registrationForm.value);
-    // this.auth.login(this.registrationForm.value.userName, this.registrationForm.value.password)
     this.auth.setdata(this.registrationForm.value);
     alert('User Registered Successfully!!!');
   }
